@@ -16,7 +16,7 @@ namespace Shop.Domain.Entities
         }
 
         [StringLength(20)]
-        [Required
+        [Required]
         public string Name { get; set; }
 
         [StringLength(11)]
