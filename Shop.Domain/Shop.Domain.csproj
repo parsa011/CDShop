@@ -8,8 +8,4 @@
     <ProjectReference Include="..\Shop.Domain.Core\Shop.Domain.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>
