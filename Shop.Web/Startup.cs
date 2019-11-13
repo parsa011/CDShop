@@ -32,7 +32,7 @@ namespace Shop.Web
             });
 
             services.AddDbContext<ShopDbContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("Shop.Web"));
             });
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
