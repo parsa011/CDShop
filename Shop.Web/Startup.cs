@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Shop.Data.DatabaseContext;
+using Shop.Data.UnitOfWork;
 
 namespace Shop.Web
 {
@@ -31,8 +33,22 @@ namespace Shop.Web
                 options.CheckConsentNeeded = context => true;
             });
 
-            services.AddDbContext<ShopDbContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("Shop.Web"));
+            services.AddDbContext<ShopDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Shop.Web"));
+            });
+            services.AddTransient<UnitOfWork, UnitOfWork>();
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.LoginPath = "/auth/Login";
+                options.LogoutPath = "/auth/SingOut";
+                options.AccessDeniedPath = "/Auth/AccessDenied";
+                options.ExpireTimeSpan = TimeSpan.FromSeconds(43200);
             });
             services.AddControllersWithViews()
                 .AddNewtonsoftJson();
@@ -60,6 +76,8 @@ namespace Shop.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -67,6 +85,9 @@ namespace Shop.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

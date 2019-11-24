@@ -1,0 +1,31 @@
+﻿@model Shop.Common.ViewModels.Account.ActivateAccount
+
+@{
+    ViewData["Title"] = "فعالسازی حساب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-lg-12">
+    <p class="text-danger">@ViewData["activationCode"]</p>
+    <div class="panel col-lg-4 col-lg-offset-4">
+        <div class="panel-heading">
+            <h2>فعالسازی حساب</h2>
+        </div>
+        <div class="panel-body">
+            <form asp-action="ActivateAccount">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Code" class="control-label"></label>
+                    <input asp-for="Code" class="form-control" />
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="فعالسازی" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Sidebar{ 
+
+}

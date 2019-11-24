@@ -10,7 +10,7 @@ namespace Shop.Domain.Entities
     {
         public Comment()
         {
-            Id = GuidGenerator.NewGuid(5);
+            Id = GuidGenerator.NewGuid();
             IsDeleted = false;
         }
 

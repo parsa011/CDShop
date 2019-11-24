@@ -6,9 +6,9 @@ namespace Shop.Domain.Core
 {
     public static class GuidGenerator
     {
-        public static string NewGuid(int lettersCount)
+        public static string NewGuid()
         {
-            return Guid.NewGuid().ToString().Replace("-","").Substring(lettersCount);
+            return Guid.NewGuid().ToString().Replace("-","").Substring(0,6);
         }
     }
 }

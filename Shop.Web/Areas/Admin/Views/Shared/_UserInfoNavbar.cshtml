@@ -1,0 +1,23 @@
+﻿@using System.Security.Claims;
+<div class="top-nav ">
+    <!--user info start-->
+    <ul class="nav pull-right top-menu">
+        <!-- user login dropdown start-->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img alt="" src="img/avatar1_small.jpg">
+                <span class="username">@User.FindFirst(ClaimTypes.GivenName).Value</span>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu extended logout">
+                <div class="log-arrow-up"></div>
+                <li><a href="#"><i class=" icon-suitcase"></i>پروفایل</a></li>
+                <li><a href="#"><i class="icon-cog"></i>تنظیمات</a></li>
+                <li><a href="#"><i class="icon-bell-alt"></i>اعلام ها</a></li>
+                <li><a href="/Auth/SignOut"><i class="icon-key"></i>خروج</a></li>
+            </ul>
+        </li>
+        <!-- user login dropdown end -->
+    </ul>
+    <!--search & user info end-->
+</div>

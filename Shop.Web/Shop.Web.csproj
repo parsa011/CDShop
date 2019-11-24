@@ -3,28 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <AssemblyName>.addautha</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\assets\**" />
     <Compile Remove="wwwroot\images\**" />
     <Compile Remove="wwwroot\incl\**" />
-    <Compile Remove="wwwroot\js\**" />
     <Compile Remove="wwwroot\lib\**" />
-    <Content Remove="wwwroot\assets\**" />
     <Content Remove="wwwroot\images\**" />
     <Content Remove="wwwroot\incl\**" />
-    <Content Remove="wwwroot\js\**" />
     <Content Remove="wwwroot\lib\**" />
-    <EmbeddedResource Remove="wwwroot\assets\**" />
     <EmbeddedResource Remove="wwwroot\images\**" />
     <EmbeddedResource Remove="wwwroot\incl\**" />
-    <EmbeddedResource Remove="wwwroot\js\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
-    <None Remove="wwwroot\assets\**" />
     <None Remove="wwwroot\images\**" />
     <None Remove="wwwroot\incl\**" />
-    <None Remove="wwwroot\js\**" />
     <None Remove="wwwroot\lib\**" />
   </ItemGroup>
 
@@ -52,10 +45,65 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="ViewComponents\" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <None Include="wwwroot\assets\bootstrap-colorpicker\index.php" />
+    <None Include="wwwroot\assets\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
+    <None Include="wwwroot\assets\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <None Include="wwwroot\assets\bootstrap-daterangepicker\date.js" />
+    <None Include="wwwroot\assets\bootstrap-daterangepicker\daterangepicker.js" />
+    <None Include="wwwroot\assets\chart-master\Chart.js" />
+    <None Include="wwwroot\assets\ckeditor\ckeditor.js" />
+    <None Include="wwwroot\assets\ckeditor\index.php" />
+    <None Include="wwwroot\assets\data-tables\DT_bootstrap.js" />
+    <None Include="wwwroot\assets\data-tables\jquery.dataTables.js" />
+    <None Include="wwwroot\assets\font-awesome\font\fontawesome-webfont.svg" />
+    <None Include="wwwroot\assets\fullcalendar\fullcalendar\fullcalendar.min.js" />
+    <None Include="wwwroot\assets\gritter\js\jquery.gritter.js" />
+    <None Include="wwwroot\assets\index.php" />
+    <None Include="wwwroot\assets\jquery-easy-pie-chart\jquery.easy-pie-chart.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\index.php" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\jquery.fileupload-fp.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\jquery.fileupload-ui.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\jquery.fileupload.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\jquery.iframe-transport.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\vendor\canvas-to-blob.min.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\vendor\jquery.ui.widget.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\vendor\load-image.min.js" />
+    <None Include="wwwroot\assets\jquery-file-upload\js\vendor\tmpl.min.js" />
+    <None Include="wwwroot\assets\jquery-knob\js\jquery.knob.js" />
+    <None Include="wwwroot\assets\jquery-ui\jquery-ui-1.10.1.custom.min.js" />
+    <None Include="wwwroot\assets\morris.js-0.4.3\morris.min.js" />
+    <None Include="wwwroot\assets\morris.js-0.4.3\raphael-min.js" />
+    <None Include="wwwroot\js\all-chartjs.js" />
+    <None Include="wwwroot\js\bootstrap-switch.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\common-scripts.js" />
+    <None Include="wwwroot\js\dynamic-table.js" />
+    <None Include="wwwroot\js\easy-pie-chart.js" />
+    <None Include="wwwroot\js\external-dragging-calendar.js" />
+    <None Include="wwwroot\js\form-component.js" />
+    <None Include="wwwroot\js\form-validation-script.js" />
+    <None Include="wwwroot\js\ga.js" />
+    <None Include="wwwroot\js\gritter.js" />
+    <None Include="wwwroot\js\index.php" />
+    <None Include="wwwroot\js\jquery-1.8.3.min.js" />
+    <None Include="wwwroot\js\jquery-ui-1.9.2.custom.min.js" />
+    <None Include="wwwroot\js\jquery.customSelect.min.js" />
+    <None Include="wwwroot\js\jquery.js" />
+    <None Include="wwwroot\js\jquery.nicescroll.js" />
+    <None Include="wwwroot\js\jquery.scrollTo.min.js" />
+    <None Include="wwwroot\js\jquery.sparkline.js" />
+    <None Include="wwwroot\js\jquery.stepy.js" />
+    <None Include="wwwroot\js\jquery.tagsinput.js" />
+    <None Include="wwwroot\js\jquery.validate.min.js" />
+    <None Include="wwwroot\js\morris-script.js" />
+    <None Include="wwwroot\js\owl.carousel.js" />
+    <None Include="wwwroot\js\sliders.js" />
+    <None Include="wwwroot\js\sparkline-chart.js" />
     <None Include="wwwroot\vendor\bootstrap\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
     <None Include="wwwroot\vendor\bootstrap\css\bootstrap-reboot.css.map" />
@@ -76,6 +124,22 @@
     <None Include="wwwroot\vendor\jquery\jquery.slim.js" />
     <None Include="wwwroot\vendor\jquery\jquery.slim.min.js" />
     <None Include="wwwroot\vendor\jquery\jquery.slim.min.map" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Admin\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Admin\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

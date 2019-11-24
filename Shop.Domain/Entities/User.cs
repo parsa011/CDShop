@@ -11,7 +11,7 @@ namespace Shop.Domain.Entities
     {
         public User()
         {
-            Id = GuidGenerator.NewGuid(5);
+            Id = GuidGenerator.NewGuid();
             IsDeleted = false;
         }
 

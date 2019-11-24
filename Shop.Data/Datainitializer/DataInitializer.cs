@@ -29,18 +29,17 @@ namespace Shop.Data.Datainitializer
                         Name = "parsa mahmoudi",
                         RoleId = context.Roles.Where(r => r.Name == "Admin").FirstOrDefault().Id,
                         IsActive = true,
-                        ActivationCode = GuidGenerator.NewGuid(5),
+                        ActivationCode = GuidGenerator.NewGuid(),
                         PasswordHash = PasswordHash.HashWithMD5("1234"),
                         IsDeleted = false,
                         Role = context.Roles.Where(r => r.Name == "Admin").FirstOrDefault()
-                    });
-                    await context.SaveChangesAsync();
+                    });      
                 }
                 if (!context.Categories.Any())
                 {
                     context.Categories.Add(new Category { ParentId = 0, Title = "دسته بندی نشده" });
-                    await context.SaveChangesAsync();
                 }
+                context.SaveChanges();
             }
         }
     }
