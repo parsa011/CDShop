@@ -9,7 +9,7 @@ namespace Shop.Domain.Entities
     {
         [Key]
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
         public string ImagePath { get; set; }
     }
 }

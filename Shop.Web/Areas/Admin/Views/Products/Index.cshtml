@@ -32,9 +32,8 @@
                                 <td>@item.Category.Title</td>
 
                                 <td>
-
-                                    <a href="/Admin/Categories/Edit/@item.Id" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
-                                    <a href="/Admin/Products/Delete/@item.Id" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+                                    <a href="/Admin/Products/Edit/@item.Id" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
+                                    <a href="/Admin/Products/Delete/@item.Id" onclick="return confirm('ایا از حذف مطمئن هستید؟')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
                                 </td>
                             }
                         </tr>

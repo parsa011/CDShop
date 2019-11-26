@@ -26,6 +26,8 @@ namespace Shop.Common.ViewModels
 
     public class ProductCreateViewModel
     {
+        public string Id { get; set; }
+
         [StringLength(20)]
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = "لطفا {0} را کامل کنید")]
@@ -68,4 +70,6 @@ namespace Shop.Common.ViewModels
         [Required(ErrorMessage = "لطفا {0} را کامل کنید")]
         public List<IFormFile> Images { get; set; }
     }
+
+
 }
