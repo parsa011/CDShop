@@ -44,5 +44,16 @@ namespace Shop.Web.Areas.Admin.Controllers
             ViewBag.Categories = _db.CategoriesGenericRepository.where().ToList();
             return View();
         }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Create(ProductCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                
+            }
+            return View(model);
+        }
     }
 }

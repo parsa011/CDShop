@@ -64,5 +64,9 @@ namespace Shop.Common.ViewModels
         [Display(Name = "دسته بندی")]
         [Required(ErrorMessage = "لطفا {0} را کامل کنید")]
         public int CategoryId { get; set; }
+
+        [Display(Name = "عکس های محصول")]
+        [Required(ErrorMessage = "لطفا {0} را کامل کنید")]
+        public List<ProductImage> Images { get; set; }
     }
 }
