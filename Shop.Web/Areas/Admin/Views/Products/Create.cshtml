@@ -11,70 +11,84 @@
         <section class="panel" style="padding:10px">
             <h1>افزودن محصول</h1>
 
+            <div class="panel-body">
+                <form asp-action="Create" method="post" role="form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label for="title" class="control-label">عنوان</label>
+                            <input id="title" asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="control-label">توضیح کوتاه</label>
+                            <input asp-for="Summary" class="form-control" />
+                            <span asp-validation-for="Summary" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label class="control-label">قیمت</label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="control-label">تعدا دیسک</label>
+                            <input asp-for="DiskCount" class="form-control" />
+                            <span asp-validation-for="DiskCount" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="control-label">محتوا</label>
+                            <input asp-for="Content" class="form-control" />
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label class="control-label">دسته بندی</label>
+                            <select class="form-control" asp-for="Content" placeholder="دسته  :">
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Id">@item.Title</option>
+                                }
+                            </select>
+                        </div>
 
-            <form asp-action="Create" method="post" role="form">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-row">
-                    <div class="form-group col-lg-6">
-                        <label class="control-label">عنوان</label>
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
+                        <div class="form-group col-lg-6">
+                            <label class="control-label">تعداد موجود</label>
+                            <input asp-for="Quantity" class="form-control"/>
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group col-lg-6">
-                        <label class="control-label">توضیح کوتاه</label>
-                        <input asp-for="Summary" class="form-control" />
-                        <span asp-validation-for="Summary" class="text-danger"></span>
+                    <div class="form-row">
+                        <div class="form-group col-lg-6 form-check">
+                            <label class="form-check-label">
+                                دارای راهنما یا اموزش
+                                <input class="form-check-input" asp-for="HasHelp" />
+                            </label>
+                        </div>
+                        <div class="form-group col-lg-6 form-check">
+                            <label class="form-check-label">
+                                دارای جعبه
+                                <input class="form-check-input" asp-for="HasBox"/>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-lg-6">
-                        <label class="control-label">قیمت</label>
-                        <input asp-for="Price" class="form-control" />
-                        <span asp-validation-for="Price" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-lg-6">
-                        <label class="control-label">تعدا دیسک</label>
-                        <input asp-for="DiskCount" class="form-control" />
-                        <span asp-validation-for="DiskCount" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group col-lg-12">
-                    <label class="control-label">محتوا</label>
-                    <input asp-for="Content" class="form-control" />
-                    <span asp-validation-for="Content" class="text-danger"></span>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-lg-6 form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="HasBox" /> دارای  جعبه
-                        </label>
-                    </div>
-                    <div class="form-group col-lg-6">
-                        <label class="control-label">تعداد موجود</label>
-                        <input asp-for="Quantity" class="form-control" />
-                        <span asp-validation-for="Quantity" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-lg-6 form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="HasHelp" /> دارای راهنما یا اموزش
-                        </label>
-                    </div>
-                    <div class="form-group col-lg-6">
-                        <select class="form-control" asp-for="Content" placeholder="دسته  :">
-                            @foreach (var item in ViewBag.Categories)
-                            {
-                                <option value="@item.Id">@item.Title</option>
-                            }
-                        </select>
-                    </div>
-                </div>
 
-                <div class="form-group col-lg-6">
-                    <input type="submit" value="افزودن" class="btn btn-primary" />
-                </div>
-            </form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="control-label">انتخاب عکس</label>
+                            <input type="file" asp-for="Images" class="form-control-file"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input type="submit" value="افزودن" class="btn btn-primary" multiple="multiple"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
 
 
             <div>

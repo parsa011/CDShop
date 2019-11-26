@@ -1,8 +1,7 @@
-﻿using Shop.Domain.Entities;
-using System;
+﻿using Microsoft.AspNetCore.Http;
+using Shop.Domain.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Shop.Common.ViewModels
 {
@@ -64,5 +63,9 @@ namespace Shop.Common.ViewModels
         [Display(Name = "دسته بندی")]
         [Required(ErrorMessage = "لطفا {0} را کامل کنید")]
         public int CategoryId { get; set; }
+
+        [Display(Name = "عکس های محصول")]
+        [Required(ErrorMessage = "لطفا {0} را کامل کنید")]
+        public List<IFormFile> Images { get; set; }
     }
 }

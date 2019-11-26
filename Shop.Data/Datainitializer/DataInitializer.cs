@@ -19,7 +19,7 @@ namespace Shop.Data.Datainitializer
                 {
                     context.Roles.Add(new Role { Name = "Admin", Title = "مدیر سایت" });
                     context.Roles.Add(new Role { Name = "User", Title = "کاربر سایت" });
-                    await context.SaveChangesAsync();
+                    context.SaveChanges();
                 }
                 if (!context.Users.Any())
                 {
