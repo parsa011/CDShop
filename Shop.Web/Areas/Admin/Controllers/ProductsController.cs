@@ -180,6 +180,10 @@ namespace Shop.Web.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(id))
             {
                 _db.ProductsGenericRepository.Delete(id);
+                foreach (var item in _db.ProductImagesGenericRepository.where(i => i.ProductId == id))
+                {
+                    _db.ProductImagesGenericRepository.Delete(item);
+                }
                 _db.Save();
             }
             return Redirect("/Admin/Products/index");
