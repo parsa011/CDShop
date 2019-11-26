@@ -1,8 +1,7 @@
-﻿using Shop.Domain.Entities;
-using System;
+﻿using Microsoft.AspNetCore.Http;
+using Shop.Domain.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Shop.Common.ViewModels
 {
@@ -67,6 +66,6 @@ namespace Shop.Common.ViewModels
 
         [Display(Name = "عکس های محصول")]
         [Required(ErrorMessage = "لطفا {0} را کامل کنید")]
-        public List<ProductImage> Images { get; set; }
+        public List<IFormFile> Images { get; set; }
     }
 }
