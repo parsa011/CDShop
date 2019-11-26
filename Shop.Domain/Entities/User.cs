@@ -22,6 +22,7 @@ namespace Shop.Domain.Entities
         [StringLength(11)]
         [Required]
         public string PhoneNumber { get; set; }
+
         public string PasswordHash { get; set; }
 
         [StringLength(6)]
