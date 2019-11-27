@@ -200,7 +200,7 @@ namespace Shop.Web.Areas.Admin.Controllers
             if (model.ContentType == "image/jpeg" || model.ContentType == "image/png")
             {
                 using var fileStream = new FileStream(filePath, FileMode.Create);
-                model.CopyToAsync(fileStream).ConfigureAwait(false);
+                model.CopyTo(fileStream);
             }
             return "/Uploads/" + model.FileName;
         }

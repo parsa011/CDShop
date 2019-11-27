@@ -42,7 +42,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label class="control-label">محتوا</label>
-                            <input asp-for="Content" class="form-control" />
+                            <textarea asp-for="Content" class="form-control"></textarea>
                             <span asp-validation-for="Content" class="text-danger"></span>
                         </div>
                     </div>
@@ -96,3 +96,9 @@
         </section>
     </div>
 </div>
+@section Scripts{
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Content');
+    </script>
+}

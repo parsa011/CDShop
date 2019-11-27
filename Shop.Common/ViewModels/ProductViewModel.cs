@@ -13,6 +13,8 @@ namespace Shop.Common.ViewModels
         [Required]
         public string Title { get; set; }
 
+        public string ImagePath { get; set; }
+
         [StringLength(50)]
         [Required]
         public string Summary { get; set; }
@@ -71,5 +73,9 @@ namespace Shop.Common.ViewModels
         public List<IFormFile> Images { get; set; }
     }
 
-
+    public class ProductDetailsViewModel
+    {
+        public Product Product { get; set; }
+        public List<ProductImage> Images { get; set; }
+    }
 }
