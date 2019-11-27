@@ -20,5 +20,6 @@ namespace Shop.Data.DatabaseContext
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
     }
 }

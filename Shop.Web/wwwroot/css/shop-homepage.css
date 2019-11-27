@@ -23,3 +23,6 @@ body {
     width: 100% !important;
     max-height: 350px !important;
 }
+.nav-link{
+    color:white !important;
+}

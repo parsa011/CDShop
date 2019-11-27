@@ -122,6 +122,19 @@ namespace Shop.Data.UnitOfWork
                 return _productImagesGenericRepository;
             }
         }
+
+        private IGenericRepository<Address> _addressesGenericRepository;
+        public IGenericRepository<Address> AddressesGenericRepository
+        {
+            get
+            {
+                if (_addressesGenericRepository == null)
+                {
+                    _addressesGenericRepository = new GenericRepository<Address>(_db);
+                }
+                return _addressesGenericRepository;
+            }
+        }
         #endregion repositories
 
         #region actions

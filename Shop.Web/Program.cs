@@ -21,7 +21,7 @@ namespace Shop.Web
                 var services = scope.ServiceProvider;
                 try
                 {
-                    DataInitializer.InitializeDataAsync(services);
+                    DataInitializer.InitializeData(services);
                 }
                 catch (Exception ex)
                 {

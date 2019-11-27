@@ -18,7 +18,7 @@
                         {
                             <li data-target="#prdtCarousel" data-slide-to="@i"
                                 class="active"></li>
-                            
+
                         }
                         else
                         {
@@ -75,39 +75,57 @@
             <p class="card-text">
                 @Html.Raw(Model.Product.Content)
             </p>
-            <div class="col-12">
-                <p>
-
-                </p>
-                <p>
-
-                </p>
-                <p>
-
-                </p>
-            </div>
         </div>
     </div>
     <!-- /.card -->
 
     <div class="card card-outline-secondary my-4">
         <div class="card-header">
-            Product Reviews
+            نظرات
         </div>
         <div class="card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <a href="#" class="btn btn-success">Leave a Review</a>
+            @(await Component.InvokeAsync("CommentComponent", Model.Product.Id))
+
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                نظر خود را بنویسید
+            </button>
+
         </div>
     </div>
     <!-- /.card -->
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">افزودن نظر</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Home/AddComment" role="form" method="post">
+                    <input type="hidden" value="@Model.Product.Id" name="ProductId"/>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">ایمیل:</label>
+                        <input type="email" name="Email" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">نام:</label>
+                        <input type="text" name="Name" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">نظر:</label>
+                        <textarea class="form-control" name="Content" id="message-text"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">ثبت</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Sidebar{

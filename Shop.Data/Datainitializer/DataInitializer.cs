@@ -11,7 +11,7 @@ namespace Shop.Data.Datainitializer
 {
     public class DataInitializer
     {
-        public static async void InitializeDataAsync(IServiceProvider services)
+        public static void InitializeData(IServiceProvider services)
         {
             using (var context = services.GetRequiredService<ShopDbContext>())
             {

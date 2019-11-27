@@ -14,10 +14,10 @@ namespace Shop.Domain.Entities
             IsDeleted = false;
         }
 
-        public string Title { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Content { get; set; }
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
+        public DateTime CreatedTime { get; set; }
     }
 }

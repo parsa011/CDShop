@@ -1,0 +1,9 @@
+﻿@model List<Shop.Domain.Entities.Comment>
+@using Shop.Common.Extention
+@foreach (var item in Model)
+{
+    <h3>@item.Name</h3>
+    <p>@item.Content</p>
+    <small class="text-muted">@item.CreatedTime.Date.ToPersianDateString()</small>
+    <hr>
+}

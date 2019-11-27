@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Common.ViewModels;
 using Shop.Data.UnitOfWork;
+using Shop.Domain.Entities;
 
 namespace Shop.Web.Controllers
 {
@@ -36,7 +37,7 @@ namespace Shop.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(string id,string title)
+        public IActionResult Details(string id, string title)
         {
             if (!string.IsNullOrEmpty(id))
             {
@@ -49,6 +50,27 @@ namespace Shop.Web.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult AddComment(string Name, string Email, string Content, string ProductId)
+        {
+            if (Name == null || Email == null || Content == null || ProductId == null)
+            {
+                return Redirect("/Home/index/");
+            }
+            var cm = new Comment
+            {
+                ProductId = ProductId,
+                Content = Content,
+                Email = Email,
+                Name = Name,
+                CreatedTime = DateTime.Now,
+                IsDeleted = false
+            };
+            _db.CommentsGenericRepository.Insert(cm);
+            _db.Save();
+            return Redirect("/Home/Details/" + ProductId);
         }
     }
 }
