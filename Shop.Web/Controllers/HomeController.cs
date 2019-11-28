@@ -72,5 +72,28 @@ namespace Shop.Web.Controllers
             _db.Save();
             return Redirect("/Home/Details/" + ProductId);
         }
+
+        public IActionResult ProductsInGroup(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var model = new List<ProductListViewModel>();
+            foreach (var item in _db.ProductsGenericRepository.where(p => p.CategoryId == int.Parse(id)))
+            {
+                model.Add(new ProductListViewModel
+                {
+                    Id = item.Id,
+                    Category = _db.CategoriesGenericRepository.GetById(item.CategoryId),
+                    ImagePath = _db.ProductImagesGenericRepository.where(i => i.ProductId == item.Id).FirstOrDefault().ImagePath,
+                    Price = item.Price,
+                    Quantity = item.Quantity,
+                    Summary = item.Summary,
+                    Title = item.Title
+                });
+            }
+            return View(model);
+        }
     }
 }

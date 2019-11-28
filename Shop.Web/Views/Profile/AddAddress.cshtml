@@ -4,61 +4,64 @@
     ViewData["Title"] = "افزودن ادرس";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="col-lg-9 pt-2">
+<div class="col-lg-9 pt-2">
 
-        <h1>افزودن ادرس</h1>
+    <h1>افزودن ادرس</h1>
 
-        <h4>مشخصات ادرس را به درستی وارد نمایید</h4>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
-                <form asp-action="AddAddress" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <label asp-for="Title" class="control-label"></label>
-                            <input asp-for="Title" class="form-control" />
-                            <span asp-validation-for="Title" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label asp-for="FullAddress" class="control-label"></label>
-                            <textarea asp-for="FullAddress" class="form-control"></textarea>
-                            <span asp-validation-for="FullAddress" class="text-danger"></span>
-                        </div>
+    <h4>مشخصات ادرس را به درستی وارد نمایید</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="AddAddress" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-row">
+                    <div class="form-group col-lg-6">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
+                    <div class="form-group col-lg-6">
+                        <label asp-for="FullAddress" class="control-label"></label>
+                        <textarea asp-for="FullAddress" class="form-control"></textarea>
+                        <span asp-validation-for="FullAddress" class="text-danger"></span>
+                    </div>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-lg-6">
-                            <label asp-for="City" class="control-label"></label>
-                            <input asp-for="City" class="form-control" />
-                            <span asp-validation-for="City" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label asp-for="PhoneNumber" class="control-label"></label>
-                            <input asp-for="PhoneNumber" class="form-control" />
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-6">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="PostAddress" class="control-label"></label>
-                        <input asp-for="PostAddress" class="form-control" />
-                        <span asp-validation-for="PostAddress" class="text-danger"></span>
+                    <div class="form-group col-lg-6">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="افزودن" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostAddress" class="control-label"></label>
+                    <input asp-for="PostAddress" class="form-control" />
+                    <span asp-validation-for="PostAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="افزودن" class="btn btn-primary" />
+                </div>
+            </form>
         </div>
-
-        <div>
-            <a asp-action="Addresses">بازگشت به لیست</a>
-        </div>
-
     </div>
+
+    <div>
+        <a asp-action="Addresses">بازگشت به لیست</a>
+    </div>
+
+</div>
+
 @section Sidebar{
     <div class="col-lg-3 mb-2">
         <h1 class="my-4">صفحه کاربری</h1>
+        @(await Component.InvokeAsync("CategoriesComponent"))
+
         <div class="list-group">
             <a href="/Profile/Addresses" class="list-group-item active">ادرس ها</a>
             <a href="/Profile/MyOrders" class="list-group-item">سفارشات من</a>

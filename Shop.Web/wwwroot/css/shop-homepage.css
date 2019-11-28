@@ -26,3 +26,51 @@ body {
 .nav-link{
     color:white !important;
 }
+.tree {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.tree, .tree ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+    .tree ul {
+        margin-left: 1em;
+        position: relative
+    }
+
+        .tree ul ul {
+            margin-left: .5em
+        }
+
+
+
+    .tree li {
+        margin: 0;
+        padding: 0 1em;
+        line-height: 2em;
+        padding: 10px;
+        font-weight: 700;
+        position: relative;
+        border-bottom: 1px solid #cccccc;
+    }
+        .tree li:last-child {
+            border-bottom: none;
+        }
+.tree ul li {
+    border-bottom: none;
+}
+
+
+
+        .indicator {
+            margin-right: 5px;
+        }
+
+.tree li a {
+    text-decoration: none;
+
+}

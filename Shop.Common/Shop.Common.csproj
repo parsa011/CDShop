@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Shop.Data\Shop.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extention\" />
+  </ItemGroup>
+
 </Project>

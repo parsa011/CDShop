@@ -46,7 +46,7 @@ namespace Shop.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Categories = _db.CategoriesGenericRepository.where().ToList();
+            ViewBag.Categories = _db.CategoriesGenericRepository.where(c => c.ParentId != 0).ToList();
             return View();
         }
 
@@ -93,7 +93,7 @@ namespace Shop.Web.Areas.Admin.Controllers
                 _db.Save();
                 return Redirect("/Admin/Products/index");
             }
-            ViewBag.Categories = _db.CategoriesGenericRepository.where().ToList();
+            ViewBag.Categories = _db.CategoriesGenericRepository.where(c => c.ParentId != 0).ToList();
             return View(model);
         }
 
@@ -116,7 +116,7 @@ namespace Shop.Web.Areas.Admin.Controllers
                     Summary = pr.Summary,
                     Title = pr.Title
                 };
-                ViewBag.Categories = _db.CategoriesGenericRepository.where().ToList();
+                ViewBag.Categories = _db.CategoriesGenericRepository.where(c => c.ParentId != 0).ToList();
                 return View(vm);
             }
             return Redirect("/Admin/Products/index");
@@ -170,7 +170,7 @@ namespace Shop.Web.Areas.Admin.Controllers
                 _db.Save();
                 return Redirect("/Admin/Products/index");
             }
-            ViewBag.Categories = _db.CategoriesGenericRepository.where().ToList();
+            ViewBag.Categories = _db.CategoriesGenericRepository.where(c => c.ParentId != 0).ToList();
             return View(model);
         }
 

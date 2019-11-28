@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Shop.Domain.Entities.Category>
+
+@{
+    Layout = null;
+}
+
+<ul id="tree1" class="mb-2">
+    @foreach (var item in Model.Where(c => c.ParentId == 0))
+    {
+        <li>
+            <a href="@((Model.Any(c => c.ParentId == item.Id) ? "" : "/Home/ProductsInGroup?id=" + item.Id + "&title=" + @item.Title))">@item.Title</a>
+            <ul>
+                @foreach (var subItem in Model.Where(c => c.ParentId == item.Id))
+                {
+                    <li><a href="/Home/ProductsInGroup?id=@subItem.Id&title=@subItem.Title">@subItem.Title</a></li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
