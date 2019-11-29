@@ -111,5 +111,11 @@ namespace Shop.Web.Controllers
                 return View(model);
             }
         }
+
+        public IActionResult MyOrders()
+        {
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return View(_db.OrdersGenericRepository.where(o => o.UserId ==currentUserId && o.IsFinally).ToList());
+        }
     }
 }

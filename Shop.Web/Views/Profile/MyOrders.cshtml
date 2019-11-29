@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Shop.Domain.Entities.Order>
+@using Shop.Common.Extention
+
+@{
+    ViewData["Title"] = "سفارشات من";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-9">
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                تاریخ ایجاد
+            </th>
+            <th>
+                مبلغ
+            </th>
+            <th>
+                وضعیت
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @item.CreatedTime.ToPersianDateString()
+                </td>
+                <td>
+                    @item.Sum.ToString("n0")
+                </td>
+                <td>
+                    @(item.IsFinally == true ? "پرداخت شده" : "پرداخت نشده")
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+
+@section Sidebar{
+    <h1 class="my-4">صفحه کاربری</h1>
+    @(await Component.InvokeAsync("CategoriesComponent"))
+
+    <div class="list-group">
+        <a href="/Profile/Addresses" class="list-group-item">ادرس ها</a>
+        <a href="/Profile/MyOrders" class="list-group-item active">سفارشات من</a>
+    </div>
+}

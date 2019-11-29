@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Shop.Common.ViewModels.CartViewModel.ShowOrderViewModel>
 @{
 
-    ViewData["Title"] = "ShowOrder";
+    ViewData["Title"] = "فاکتور";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int row = 1;
 
@@ -53,7 +53,7 @@
         <tr>
             <td colspan="4" class="text-left"></td>
             <td colspan="3">
-                <a class="btn btn-primary btn-block text-white">تایید و پرداخت نهایی</a>
+                <a class="btn btn-primary btn-block text-white" asp-action="Payment">تایید و پرداخت نهایی</a>
             </td>
         </tr>
     </table>

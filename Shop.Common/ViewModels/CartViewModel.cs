@@ -1,4 +1,7 @@
-﻿namespace Shop.Common.ViewModels.CartViewModel
+﻿using System.Collections.Generic;
+using Shop.Domain.Entities;
+
+namespace Shop.Common.ViewModels.CartViewModel
 {
     public class ShowCartViewModel
     {
@@ -16,5 +19,11 @@
         public decimal Price { get; set; }
         public decimal Sum { get; set; }
 
+    }
+
+    public class FactorViewModel
+    {
+        public List<Address> Addresses { get; set; }
+        public List<ShowOrderViewModel> OrderViewModels { get; set; }
     }
 }

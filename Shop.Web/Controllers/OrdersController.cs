@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Shop.Common.ViewModels.CartViewModel;
 using Shop.Data.UnitOfWork;
 using Shop.Domain.Entities;
+using ZarinpalSandbox;
 
 namespace Shop.Web.Controllers
 {
@@ -152,6 +153,59 @@ namespace Shop.Web.Controllers
                 .Select(d => d.Count * d.Price).Sum();
             _db.OrdersGenericRepository.Update(order);
             _db.Save();
+        }
+
+        public IActionResult Payment()
+        {
+            var order = _db.OrdersGenericRepository.where(o => !o.IsFinally).SingleOrDefault();
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            var payment = new Payment(decimal.ToInt32(order.Sum));
+            var currentUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userPhone = _db.UsersGenericRepository.GetById(currentUser).PhoneNumber;
+            var res = payment.PaymentRequest($"پرداخت فاکتور شماره {order.Id}",
+                "https://localhost:44399/Orders/OnlinePayment/" + order.Id,null,userPhone);
+            if (res.Result.Status == 100)
+            {
+                return Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + res.Result.Authority);
+            }
+            else
+            {
+                return BadRequest("پرداخت امکان پذیر نیست بعدا تلاش فرمایید");
+            }
+            return null;
+        }
+
+        public IActionResult OnlinePayment(string id)
+        {
+            if (HttpContext.Request.Query["Status"] != ""
+                && HttpContext.Request.Query["Status"].ToString().ToLower() == "ok"
+                && HttpContext.Request.Query["Authority"] != "")
+            {
+                string authority = HttpContext.Request.Query["Authority"].ToString();
+                var order = _db.OrdersGenericRepository.GetById(id);
+                var payment = new Payment(decimal.ToInt32(order.Sum));
+                var res = payment.Verification(authority).Result;
+                if (res.Status == 100)
+                {
+                    order.IsFinally = true;
+                    _db.OrdersGenericRepository.Update(order);
+                    var details = _db.OrderDetailsGenericRepository.where( o => o.OrderId == order.Id).ToList();
+                    foreach (var item in details)
+                    {
+                        var product = _db.ProductsGenericRepository.GetById(item.ProductId);
+                        product.Quantity -= item.Count;
+                    }
+                    _db.Save();
+                    ViewBag.Code = res.RefId;
+                    return View();
+                }
+            }
+
+            return NotFound();
         }
     }
 }
