@@ -2,7 +2,7 @@
 
 namespace Shop.Data.Migrations
 {
-    public partial class migupdate : Migration
+    public partial class miginitial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

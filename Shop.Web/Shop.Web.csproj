@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Orders\" />
     <Folder Include="wwwroot\ckeditor\adapters\" />
     <Folder Include="wwwroot\ckeditor\lang\" />
     <Folder Include="wwwroot\ckeditor\plugins\a11yhelp\" />

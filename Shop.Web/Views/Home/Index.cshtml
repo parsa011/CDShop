@@ -35,7 +35,7 @@
 
     <div class="row">
 
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
@@ -57,7 +57,7 @@
                 </div>
             </div>
         }
-        
+
 
     </div><!-- /.row -->
 
@@ -65,9 +65,6 @@
 <!-- /.col-lg-9 -->
 
 @section Sidebar{
-    <div class="col-lg-3">
-        <h1 class="my-4">فروشگاه</h1>
-        @(await Component.InvokeAsync("CategoriesComponent"))
-    </div>
+    @(await Component.InvokeAsync("CategoriesComponent"))
     <!-- /.col-lg-3 -->
 }

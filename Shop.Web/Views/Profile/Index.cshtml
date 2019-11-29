@@ -8,14 +8,11 @@
 
 
 @section Sidebar{
-    <div class="col-lg-3 mb-2">
-        <h1 class="my-4">صفحه کاربری</h1>
-        @(await Component.InvokeAsync("CategoriesComponent"))
+    <h1 class="my-4">صفحه کاربری</h1>
+    @(await Component.InvokeAsync("CategoriesComponent"))
 
-        <div class="list-group">
-            <a href="/Profile/Addresses" class="list-group-item">ادرس ها</a>
-            <a href="/Profile/MyOrders" class="list-group-item">سفارشات من</a>
-        </div>
+    <div class="list-group">
+        <a href="/Profile/Addresses" class="list-group-item">ادرس ها</a>
+        <a href="/Profile/MyOrders" class="list-group-item">سفارشات من</a>
     </div>
-    <!-- /.col-lg-3 -->
 }

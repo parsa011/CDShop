@@ -67,7 +67,11 @@
         <div class="card-body">
             <h3 class="card-title">
                 @Model.Product.Title
-                <a class="btn btn-success text-white float-left">افزودن به سبد خرید</a>
+                @if (Model.Product.Quantity != 0)
+                {
+                    <a asp-action="AddToCart" asp-controller="Orders" asp-route-id="@Model.Product.Id"
+                       class="btn btn-success text-white float-left">افزودن به سبد خرید</a>
+                }
             </h3>
             <h4>
                 @Model.Product.Price.ToString("n0") تومان
@@ -129,8 +133,7 @@
 </div>
 
 @section Sidebar{
-    <div class="col-lg-3">
-        <h1 class="my-4">فروشگاه</h1>
+    
         @(await Component.InvokeAsync("CategoriesComponent"))
 
         <div class="list-group mt-2">
@@ -151,6 +154,4 @@
                 @Model.Product.Quantity
             </p>
         </div>
-    </div>
-    <!-- /.col-lg-3 -->
 }

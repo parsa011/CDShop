@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Shop.Common.ViewModels.CartViewModel.ShowCartViewModel>
+
+<div class="card mt-2 mb-2">
+    <div class="card-header">سبد خرید شما</div>
+    <div class="card-body">
+        @if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="row" style="margin-top: 3px">
+                    <div class="col-md-4">
+                        <img src="@item.ImageName" class="thumbnail" style="max-width: 100%" />
+                    </div>
+                    <div class="col-md-8">
+                        <h5>
+                            @item.Title <span class=" badge badge-info">@item.Count</span>
+                        </h5>
+                    </div>
+                </div>
+                <hr/>
+            }
+
+        }
+        else
+        {
+            <p class="text-muted  text-center">سبد خرید خالی است</p>
+        }
+    </div>
+    @if (Model.Any())
+    {
+        <div class="card-footer">
+            <a asp-action="ShowOrder" asp-controller="Orders" class="btn btn-success text-white btn-block">نمایش فاکتور</a>
+        </div>
+    }
+</div>

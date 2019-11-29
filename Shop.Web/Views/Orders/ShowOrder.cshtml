@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Shop.Common.ViewModels.CartViewModel.ShowOrderViewModel>
+@{
+
+    ViewData["Title"] = "ShowOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int row = 1;
+
+}
+
+<div class="col-lg-9">
+
+    <h1>فاکتور</h1>
+    <hr />
+
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>تصویر</th>
+            <th>عنوان</th>
+            <th>تعداد</th>
+            <th>قیمت</th>
+            <th>جمع</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@row</td>
+                <td>
+                    <img style="max-width: 150px" class="thumbnail" src="@item.ImageName" />
+                </td>
+                <td>@item.Title</td>
+                <td>@item.Count</td>
+                <td>@item.Price.ToString("n0")</td>
+                <td>@item.Sum.ToString("n0")</td>
+                <td>
+                    <a class="btn btn-sm btn-success" href="/Orders/Command/@item.OrderDetailId?command=up">افزایش</a>
+                    <a class="btn btn-sm btn-warning text-white" href="/Orders/Command/@item.OrderDetailId?command=down">کاهش</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-controller="Orders" asp-route-id="@item.OrderDetailId">
+                        حذف
+                    </a>
+                </td>
+            </tr>
+
+            row += 1;
+        }
+        <tr>
+            <td colspan="5" class="text-left">جمع کل : </td>
+            <td colspan="2">
+                @Model.Sum(s => s.Sum).ToString("#,0 تومان")
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" class="text-left"></td>
+            <td colspan="3">
+                <a class="btn btn-primary btn-block text-white">تایید و پرداخت نهایی</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+@section Sidebar{
+    @(await Component.InvokeAsync("CategoriesComponent"))
+    <!-- /.col-lg-3 -->
+}

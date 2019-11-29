@@ -36,7 +36,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="alert alert-success text-center" style="direction: ltr" >
+            <div class="alert alert-success text-center" style="direction: ltr">
                 <h3>@((Model.Any() == true) ? Model.FirstOrDefault().Category.Title : "")</h3>
             </div>
         </div>
@@ -71,9 +71,6 @@
 <!-- /.col-lg-9 -->
 
 @section Sidebar{
-    <div class="col-lg-3">
-        <h1 class="my-4">فروشگاه</h1>
-        @(await Component.InvokeAsync("CategoriesComponent"))
-    </div>
+    @(await Component.InvokeAsync("CategoriesComponent"))
     <!-- /.col-lg-3 -->
 }
