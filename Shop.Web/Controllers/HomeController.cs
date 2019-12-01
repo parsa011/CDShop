@@ -95,5 +95,27 @@ namespace Shop.Web.Controllers
             }
             return View(model);
         }
+
+        public IActionResult Search(string s)
+        {
+            var model = new List<ProductListViewModel>();
+            foreach (var item in _db.ProductsGenericRepository.where( p => p.Title.Contains(s)))
+            {
+                model.Add(new ProductListViewModel
+                {
+                    Id = item.Id,
+                    Category = _db.CategoriesGenericRepository.GetById(item.CategoryId),
+                    ImagePath = _db.ProductImagesGenericRepository.where(i => i.ProductId == item.Id).FirstOrDefault().ImagePath,
+                    Price = item.Price,
+                    Quantity = item.Quantity,
+                    Summary = item.Summary,
+                    Title = item.Title
+                });
+            }
+
+            ViewBag.search = s;
+            ViewBag.count = model.Count;
+            return View(model);
+        }
     }
 }
