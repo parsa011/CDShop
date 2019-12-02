@@ -12,32 +12,34 @@
             </header>
             <table class="table table-striped table-advance table-hover">
                 <thead>
-                <tr>
-                    <th><i class="icon-bullhorn"></i>نام</th>
-                    <th class="hidden-phone"><i class="icon-question-sign"></i>شماره </th>
-                    <th><i class="icon-dollar"></i>کد فعالسازی</th>
-                    <th><i class=" icon-question"></i>سطح دسترسی</th>
-                    <th><i class=" icon-bookmark"></i>وضعیت</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th><i class="icon-bullhorn"></i>نام</th>
+                        <th class="hidden-phone"><i class="icon-question-sign"></i>شماره </th>
+                        <th><i class="icon-dollar"></i>کد فعالسازی</th>
+                        <th><i class=" icon-question"></i>سطح دسترسی</th>
+                        <th><i class=" icon-bookmark"></i>وضعیت</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
+
                     @foreach (var item in Model)
                     {
-                        <td>@item.Name</td>
-                        <td>@item.PhoneNumber</td>
-                        <td>@item.ActivationCode</td>
-                        <td>@item.Role</td>
-                        <td>@((item.IsActive == true) ? "فعال" : "غیر فعال")</td>
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.ActivationCode</td>
+                            <td>@item.Role</td>
+                            <td>@((item.IsActive == true) ? "فعال" : "غیر فعال")</td>
 
-                        <td>
-                            <a href="/Admin/Users/Edit/@item.Id" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
-                            <a href="/Admin/Users/UserOrders/@item.Id" class="btn btn-info btn-xs">سفارشات کاربر</a>
-                            <a href="/Admin/Users/Delete/@item.Id" onclick="return confirm('ایا از حذف مطمئن هستید؟')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
-                        </td>
+                            <td>
+                                <a href="/Admin/Users/Edit/@item.Id" class="btn btn-primary btn-xs"><i class="icon-pencil"></i></a>
+                                <a href="/Admin/Users/UserOrders/@item.Id" class="btn btn-info btn-xs">سفارشات کاربر</a>
+                                <a href="/Admin/Users/Delete/@item.Id" onclick="return confirm('ایا از حذف مطمئن هستید؟')" class="btn btn-danger btn-xs"><i class="icon-trash "></i></a>
+                            </td>
+                        </tr>
                     }
-                </tr>
+
                 </tbody>
             </table>
         </section>

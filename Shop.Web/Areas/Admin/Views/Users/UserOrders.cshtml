@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Shop.Domain.Entities.Order>
+@using Shop.Common.Extention
+@{
+    ViewData["Title"] = "سفارشات کاربر";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <table class="table table-striped table-advance table-hover">
+                <thead>
+                    <tr>
+                        <th><i class="icon-calendar"></i>تاریخ ایجاد</th>
+                        <th><i class="icon-dollar"></i>مبلغ</th>
+                        <th><i class=" icon-question"></i>وضعیت</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CreatedTime.ToPersianDateString()</td>
+                            <td>@item.Sum.ToString("n0")</td>
+                            <td>
+                                @(item.IsFinally == true ? "پرداخت شده" : "پرداخت نشده")
+                            </td>
+                            <td>
+                                <a href="/Admin/Users/OrderDetails/@item.Id">جزئیات فاکتور</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>

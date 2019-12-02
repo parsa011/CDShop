@@ -4,7 +4,9 @@ using Shop.Common.UserViewModel;
 using Shop.Data.UnitOfWork;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using Shop.Common.UserViewModel;
+using Shop.Common.ViewModels.CartViewModel;
 using Shop.Data;
 
 namespace Shop.Web.Areas.Admin.Controllers
@@ -91,6 +93,52 @@ namespace Shop.Web.Areas.Admin.Controllers
             {
                 return View(model);
             }
+        }
+
+        [HttpGet]
+        public IActionResult UserOrders(string id)
+        {
+
+            if (string.IsNullOrEmpty(id))
+            {
+                return Redirect("/Admin/Users/Index");
+            }
+
+            return View(_db.OrdersGenericRepository.where(o => o.IsFinally).ToList());
+        }
+
+        [HttpGet]
+        public IActionResult OrderDetails(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return Redirect("/Admin/Users/Index");
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var model = new List<ShowOrderViewModel>();
+            var order = _db.OrdersGenericRepository.where(o => o.IsFinally && o.UserId == currentUserId && o.Id == id)
+                .SingleOrDefault();
+            if (order != null)
+            {
+                foreach (var item in _db.OrderDetailsGenericRepository.where(o => o.OrderId == order.Id ))
+                {
+                    var product = _db.ProductsGenericRepository.GetById(item.ProductId);
+                    model.Add(new ShowOrderViewModel
+                    {
+                        ImageName = _db.ProductImagesGenericRepository.where(i => i.ProductId == item.ProductId).FirstOrDefault().ImagePath,
+                        Title = product.Title,
+                        Count = item.Count,
+                        OrderDetailId = item.Id,
+                        Price = item.Price,
+                        Sum = item.Count * item.Price
+                    });
+
+                }
+            }
+
+            ViewBag.UserName = User.FindFirstValue(ClaimTypes.Name);
+            return View(model);
         }
     }
 }
